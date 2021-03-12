@@ -30,3 +30,6 @@ EFW  0	EFI E-field Wave Burst Level 0 Packets
 
 
 '''
+from . import _EFI
+from .DownloadData import DownloadData
+from .URL import URL
