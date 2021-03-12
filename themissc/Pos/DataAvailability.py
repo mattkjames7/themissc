@@ -1,12 +1,10 @@
-from .. import Globals 
-import time
-import os
 import numpy as np
+from .ReadIndex import ReadIndex
 
-def URL(sc,Prod,L):
+def DataAvailability(sc='a',Prod='V03',L='1'):
 	'''
-	Returns a function which works out the URLs for a given date
-	
+	Provide a list of dates for which there are data.
+
 	Inputs
 	======
 	sc : str
@@ -16,12 +14,8 @@ def URL(sc,Prod,L):
 	L : str or int
 		Level of data to download (0,1,2)
 
-
-
-
 	Available data products
 	=======================
-
 
 	Prod L	Description
 	========================================================================
@@ -30,24 +24,9 @@ def URL(sc,Prod,L):
 	V02  1	Version 2 (Definitive Ephemeris + spin) Level 1 CDF
 	V03  1	Version 3 (Definitive Ephemeris + spin attitude corrections) Level 1 CDF
 
-
 	(Level 0 data might not work)
 
-
-	Returns
-	=======
-	urls
+	
 	'''
-	
-	def URLFunction(Date):
-	
-		#get the year
-		Year = Date//10000
-		
-		#get the URL for that year
-		url0 = 'http://themis.ssl.berkeley.edu/data/themis/th{:s}/l{:s}/state/{:04d}/'.format(sc.lower(),str(L),Year)
-		
-		return url0
-	
-	return URLFunction
-
+	idx = ReadIndex(sc,Prod,L)
+	return np.unique(idx.Date)

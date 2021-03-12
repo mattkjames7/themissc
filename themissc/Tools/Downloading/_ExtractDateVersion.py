@@ -18,9 +18,11 @@ def _ExtractDateVersion(files,vfmt='v\d'):
 	
 	for i in range(0,nf):
 		Date[i] = np.int32(dp.search(files[i]).group())
-		tmp = vp.search(files[i]).group()
-		for v in vlet:
-			tmp = tmp.replace(v,'')
-		Ver[i] = np.int32(tmp)
-				
+		try:
+			tmp = vp.search(files[i]).group()
+			for v in vlet:
+				tmp = tmp.replace(v,'')
+			Ver[i] = np.int32(tmp)
+		except:
+			Ver[i] = 0	
 	return Date,Ver

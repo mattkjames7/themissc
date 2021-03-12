@@ -1,11 +1,10 @@
-from .. import Globals 
-import time
-import os
 import numpy as np
+from ..Tools.Downloading._ReadDataIndex import _ReadDataIndex
+from . import _Pos
 
-def URL(sc,Prod,L):
+def ReadIndex(sc='a',Prod='V03',L='1'):
 	'''
-	Returns a function which works out the URLs for a given date
+	Reads the index file for a given data product.
 	
 	Inputs
 	======
@@ -22,7 +21,6 @@ def URL(sc,Prod,L):
 	Available data products
 	=======================
 
-
 	Prod L	Description
 	========================================================================
 	V00  1	Version 0 (Predicted Ephemeris Only) STATE L1 CDF
@@ -30,24 +28,12 @@ def URL(sc,Prod,L):
 	V02  1	Version 2 (Definitive Ephemeris + spin) Level 1 CDF
 	V03  1	Version 3 (Definitive Ephemeris + spin attitude corrections) Level 1 CDF
 
-
 	(Level 0 data might not work)
-
-
+	
+	
 	Returns
 	=======
-	urls
+	numpy.recarray
+	
 	'''
-	
-	def URLFunction(Date):
-	
-		#get the year
-		Year = Date//10000
-		
-		#get the URL for that year
-		url0 = 'http://themis.ssl.berkeley.edu/data/themis/th{:s}/l{:s}/state/{:04d}/'.format(sc.lower(),str(L),Year)
-		
-		return url0
-	
-	return URLFunction
-
+	return _ReadDataIndex(_Pos.idxfname.format(Prod,L,sc))
