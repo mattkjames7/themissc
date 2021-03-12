@@ -10,3 +10,4 @@ from . import SCM
 from . import SST
 from . import Tools
 from . import Trace
+from . import Globals
