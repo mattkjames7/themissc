@@ -1,12 +1,13 @@
 import os
 
 #try and find the THEMIS_PATH variable - this is where data will be stored
-ModulePath = os.path.dirname(__file__)+'/'
-try:
-	DataPath = os.getenv('THEMIS_PATH')+'/'
-except:
+ModulePath = os.path.dirname(os.path.abspath(__file__))
+DataPath = os.getenv('THEMIS_PATH')
+if DataPath is None:
 	print('Please set THEMIS_PATH environment variable')
 	DataPath = ''
+else:
+	DataPath = os.path.normpath(DataPath)
 
 #THEMIS position
 aPos = None

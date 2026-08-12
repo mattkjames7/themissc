@@ -4,7 +4,7 @@ from ..Tools.Downloading._DownloadData import _DownloadData
 from . import _FFT
 from .URL import URL
 
-def DownloadData(sc='a',Prod='FFT',L='2',Date=[20070101,20210101],Overwrite=False,Verbose=True):
+def DownloadData(sc='a',Prod='FFT',L='2',Date=[20070101,None],Overwrite=False,Verbose=True):
 	'''
 	Downloads FFT data.
 

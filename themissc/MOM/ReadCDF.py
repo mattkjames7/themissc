@@ -44,7 +44,7 @@ def ReadCDF(Date,sc='a',Prod='MOM',L='2'):
 	mx = mx[0]
 	
 	#get the file name
-	fname = _MOM.datapath.format(Prod,L,sc) + idx[mx].FileName
+	fname = os.path.join(_MOM.datapath.format(Prod,L,sc),idx[mx].FileName)
 
 
 	#check file exists

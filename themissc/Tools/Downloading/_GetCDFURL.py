@@ -1,7 +1,6 @@
-from ... import Globals 
-import time
-import os
 import numpy as np
+import requests
+from urllib.parse import urljoin
 
 def _GetCDFURL(url0):
 	'''
@@ -14,26 +13,16 @@ def _GetCDFURL(url0):
 		urls,fnames
 	'''
 	
-	#set up a temporary file/path 
-	tmppath = Globals.DataPath+'tmp/'
-	if not os.path.isdir(tmppath):
-		os.system('mkdir -pv '+tmppath)
-	tmpfname = tmppath + '{:17.7f}.tmp'.format(time.time())
-	
-	#wget the file
-	ret = os.system('wget --no-verbose '+url0+' -O '+tmpfname)
-	
-	if ret != 0:
+	# Fetch the directory listing directly. This avoids the platform-specific
+	# wget dependency and the temporary file which used to be needed for it.
+	try:
+		response = requests.get(url0,timeout=(10,60))
+		response.raise_for_status()
+	except requests.RequestException:
 		return [],[]
-	
-	#read it
-	f = open(tmpfname,'r')
-	lines = f.readlines()
+
+	lines = response.text.splitlines()
 	n = np.size(lines)
-	f.close()
-	
-	#remove the file
-	os.system('rm -v '+tmpfname)
 
 	#now search for the line with the substring '.cdf"'
 	urls = []
@@ -43,7 +32,7 @@ def _GetCDFURL(url0):
 			s = lines[i].replace('<a','"').replace('</a>','"').replace('>','"').split('"')
 			for ss in s:
 				if '.cdf' in ss and not 'http' in ss:
-					urls.append(url0+ss)
+					urls.append(urljoin(url0,ss))
 					fnames.append(ss)
 					break
 					

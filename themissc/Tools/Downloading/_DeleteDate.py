@@ -38,8 +38,8 @@ def _DeleteDate(Date,fname,path,Confirm=True):
 		inpt = 'y'
 		if Confirm:
 			inpt = input('Delete the file {:s}? (y/n):\n'.format(idx.FileName[idel[i]]))
-		if inpt:
-			os.system('rm -v '+path+idx.FileName[idel[i]])
+		if inpt.lower() == 'y':
+			os.remove(os.path.join(path,idx.FileName[idel[i]]))
 			removed[idel[i]] = True
 			
 	#keep the remaining entries

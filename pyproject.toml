@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "themissc"
+version = "0.1.0"
+description = "Download and read THEMIS spacecraft data"
+readme = "README.md"
+requires-python = ">=3.9"
+license = "MIT"
+authors = [
+    { name = "Matt", email = "mattkjames7@gmail.com" },
+]
+dependencies = [
+    "cdflib",
+    "DateTimeTools",
+    "matplotlib",
+    "numpy",
+    "PyFileIO",
+    "RecarrayTools",
+    "requests",
+    "scipy",
+    "tqdm",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Science/Research",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Physics",
+]
+
+[project.urls]
+Homepage = "https://github.com/mattkjames7/themissc"
+Repository = "https://github.com/mattkjames7/themissc.git"
+Issues = "https://github.com/mattkjames7/themissc/issues"
+
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["themissc*"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+markers = [
+    "network: smoke tests which access the THEMIS data archive",
+]
+testpaths = ["tests"]

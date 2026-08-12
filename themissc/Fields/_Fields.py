@@ -1,11 +1,12 @@
 import numpy as np
+import os
 from .. import Globals
 
 #this just stores a few variables for this particular instrument
 
 #data path and index file name: format(Prod,L,sc)
-idxfname = Globals.DataPath + 'Fields/{:s}.{:s}.{:s}.dat'
-datapath = Globals.DataPath + 'Fields/{:s}/{:s}/{:s}/'
+idxfname = os.path.join(Globals.DataPath,'Fields','{}.{}.{}.dat')
+datapath = os.path.join(Globals.DataPath,'Fields','{}','{}','{}')
 
 #file version format
-vfmt = 'v\d\d'
+vfmt = r'v\d\d'
