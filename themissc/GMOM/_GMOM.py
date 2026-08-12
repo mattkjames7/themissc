@@ -5,8 +5,8 @@ from .. import Globals
 #this just stores a few variables for this particular instrument
 
 #data path and index file name: format(Prod,L,sc)
-idxfname = os.path.join(Globals.DataPath,'GMOM','{:s}.{:s}.{:s}.dat')
-datapath = os.path.join(Globals.DataPath,'GMOM','{:s}','{:s}','{:s}')
+idxfname = os.path.join(Globals.DataPath,'GMOM','{}.{}.{}.dat')
+datapath = os.path.join(Globals.DataPath,'GMOM','{}','{}','{}')
 
 #file version format
-vfmt = 'v\d'
+vfmt = r'v\d'

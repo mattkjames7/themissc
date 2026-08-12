@@ -3,7 +3,7 @@ from ..ListFiles import ListFiles
 import re
 from ._UpdateDataIndex import _UpdateDataIndex
 
-def _RebuildDataIndex(fpath,fname,vfmt='v\d\d'):
+def _RebuildDataIndex(fpath,fname,vfmt=r'v\d\d'):
 	
 	#define the dtype
 	dtype = [('Date','int32'),('FileName','object'),('Version','int32')]
@@ -16,11 +16,11 @@ def _RebuildDataIndex(fpath,fname,vfmt='v\d\d'):
 	data = np.recarray(nf,dtype=dtype)
 	
 	#extract the versions from each file
-	dp = re.compile('\d\d\d\d\d\d\d\d')
+	dp = re.compile(r'\d\d\d\d\d\d\d\d')
 	vp = re.compile(vfmt)
 	p = 0
 	
-	vlet = vfmt.replace('\d','')
+	vlet = vfmt.replace(r'\d','')
 	
 	for i in range(0,nf):
 		if '.cdf' in files[i]:

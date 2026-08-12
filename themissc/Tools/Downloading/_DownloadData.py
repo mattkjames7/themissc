@@ -32,7 +32,7 @@ def _DownloadFile(url,outfname):
 		raise
 
 def _DownloadData(URLF,fname,outpath,Date=[20070101,None],
-				vfmt='v\d',FContains=None,Overwrite=False,
+				vfmt=r'v\d',FContains=None,Overwrite=False,
 				Progress=False,Download=True):
 	'''
 	Downloads Arase data
