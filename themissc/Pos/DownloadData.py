@@ -4,7 +4,7 @@ from ..Tools.Downloading._DownloadData import _DownloadData
 from . import _Pos
 from .URL import URL
 
-def DownloadData(sc='a',Prod='V03',L='1',Date=[20070101,20210101],Overwrite=False,Verbose=True):
+def DownloadData(sc='a',Prod='V03',L='1',Date=[20070101,None],Overwrite=False,Verbose=True):
 	'''
 	Downloads ephemeris data.
 
@@ -33,5 +33,3 @@ def DownloadData(sc='a',Prod='V03',L='1',Date=[20070101,20210101],Overwrite=Fals
 	URLF = URL(sc,Prod,L)
 	_DownloadData(URLF,_Pos.idxfname.format(Prod,L,sc),_Pos.datapath.format(Prod,L,sc),
 			Date,_Pos.vfmt,None,Overwrite,Verbose)
-	
-	
