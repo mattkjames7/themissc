@@ -36,6 +36,16 @@ Homepage = "https://github.com/mattkjames7/themissc"
 Repository = "https://github.com/mattkjames7/themissc.git"
 Issues = "https://github.com/mattkjames7/themissc/issues"
 
+[project.optional-dependencies]
+test = ["pytest>=7"]
+
 [tool.setuptools.packages.find]
 where = ["."]
 include = ["themissc*"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+markers = [
+    "network: smoke tests which access the THEMIS data archive",
+]
+testpaths = ["tests"]
