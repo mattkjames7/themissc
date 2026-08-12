@@ -10,7 +10,7 @@ def ListFiles(start,ReturnNames=False):
 	NameOut = []
 	for root,dirs,files in os.walk(start,topdown=False,followlinks=True):
 		for name in files:
-			FileOut.append(root+'/'+name)
+			FileOut.append(os.path.join(root,name))
 			NameOut.append(name)
 	
 	FileOut = np.array(FileOut)
