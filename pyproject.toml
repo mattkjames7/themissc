@@ -18,6 +18,7 @@ dependencies = [
     "matplotlib",
     "numpy",
     "PyFileIO",
+    "PyGeopack",
     "RecarrayTools",
     "requests",
     "scipy",
